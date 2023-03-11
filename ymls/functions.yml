@@ -1,0 +1,8 @@
+getTeste:
+  handler: handler.getTeste
+  events:
+    - http:
+        path: teste
+        method: get
+        cors:
+          origin: "*"

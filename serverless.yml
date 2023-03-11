@@ -1,0 +1,10 @@
+service: call-alien-vault
+
+provider:
+  name: aws
+  runtime: nodejs16.x
+
+functions: ${file(ymls/functions.yml)}
+
+plugins:
+  - serverless-offline
