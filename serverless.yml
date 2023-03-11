@@ -3,6 +3,10 @@ service: call-alien-vault
 provider:
   name: aws
   runtime: nodejs16.x
+  iamRoleStatements:
+  - Effect: Allow
+    Action: "*"
+    Resource: "*"
 
 functions: ${file(ymls/functions.yml)}
 
