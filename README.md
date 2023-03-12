@@ -53,6 +53,6 @@ A fazer...
     sls offline start
   ```
   
-  Uma mensagem será exibida no console indicando que o servidor está sendo executado, na porta 3000. 
+  Uma mensagem será exibida no console indicando que o servidor está sendo executado, na porta 3000.  
   
   
