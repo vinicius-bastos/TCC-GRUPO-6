@@ -3,8 +3,11 @@ service: call-alien-vault-tcc
 provider:
   name: aws
   runtime: nodejs16.x
+  iam:
+    role: arn:aws:iam::979076447048:role/LabRole
 
 functions: ${file(ymls/functions.yml)}
+  
 
 plugins:
   - serverless-offline
