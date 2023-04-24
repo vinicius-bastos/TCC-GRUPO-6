@@ -3,11 +3,36 @@ service: call-alien-vault-tcc
 provider:
   name: aws
   runtime: nodejs16.x
+  memorySize: 128
+  stage: ${opt:stage, env:STAGE, 'dev'}
+  timeout: 60
   iam:
     role: arn:aws:iam::979076447048:role/LabRole
+  environment: ${file(ymls/environment.yml)}
 
 functions: ${file(ymls/functions.yml)}
   
+resources:
+  Resources:
+    PulsesSubscribedTable:
+      Type: "AWS::DynamoDB::Table"
+      Properties:
+        TableName: ${self:service}-${self:provider.stage}-pulses-subscribed
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+        AttributeDefinitions:
+          - AttributeName: "id"
+            AttributeType: "S"
+        KeySchema:
+          - AttributeName: "id"
+            KeyType: "HASH"
+        SSESpecification:
+          SSEEnabled: true
+    PulsesSubscribedBucket:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: ${self:service}-${self:provider.stage}-pulses-subscribed
 
 plugins:
   - serverless-offline

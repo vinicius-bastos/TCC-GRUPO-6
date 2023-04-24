@@ -6,3 +6,4 @@ getTeste:
         method: get
         cors:
           origin: "*"
+    # - schedule: rate(1 minute) 

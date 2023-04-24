@@ -1,0 +1,2 @@
+PULSES_SUBSCRIBED_TABLE_NAME: ${self:service}-${self:provider.stage}-pulses-subscribed
+PULSES_SUBSCRIBED_S3_BUCKET: ${self:service}-${self:provider.stage}-pulses-subscribed
