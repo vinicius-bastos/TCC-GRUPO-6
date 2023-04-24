@@ -54,5 +54,3 @@ A fazer...
   ```
   
   Uma mensagem será exibida no console indicando que o servidor está sendo executado, na porta 3000.  
-  
-  
