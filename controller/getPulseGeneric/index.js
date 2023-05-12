@@ -1,8 +1,30 @@
-const getTesteService = require('../../services');
+const getPulsesGenericServices = require('../../services');
 
-const getTeste = async () => {
+const getPulsesGeneric = async (event) => {
   try {
-    const response = await getTesteService.getTesteService();
+    let { body } = event;
+    body = JSON.parse(body);
+    if (!body) {
+      return {
+        statusCode: 400,
+        body: JSON.stringify({
+          message: 'Missing body',
+        }),
+      };
+    }
+
+    if (!body.endpoint) {
+      return {
+        statusCode: 400,
+        body: JSON.stringify({
+          message: 'Missing required fields',
+        }),
+      };
+    }
+
+    const response = await getPulsesGenericServices.getPulsesGenericService({
+      content: body,
+    });
 
     return {
       statusCode: 200,
@@ -34,4 +56,4 @@ const getTeste = async () => {
   }
 };
 
-module.exports = { getTeste };
+module.exports = { getPulsesGeneric };

@@ -4,8 +4,6 @@ const { v4: uuidv4 } = require('uuid');
 const { insert } = require('../../commons/dynamodb');
 const api = require('../../config/api');
 
-const docClient = new AWS.DynamoDB.DocumentClient();
-
 const table = process.env.PULSES_SUBSCRIBED_TABLE_NAME;
 
 // Configurações do AWS S3
@@ -13,7 +11,7 @@ const s3 = new AWS.S3();
 const bucketName = process.env.PULSES_SUBSCRIBED_S3_BUCKET;
 const lastPageKey = 'lastPage';
 
-const getTesteService = () => {
+const getPulsesSubscribedService = () => {
   const isS3BucketEmpty = async () => {
     try {
       const objects = await s3.listObjectsV2({ Bucket: bucketName }).promise();
@@ -82,4 +80,4 @@ const getTesteService = () => {
   return { get };
 };
 
-module.exports = getTesteService;
+module.exports = getPulsesSubscribedService;

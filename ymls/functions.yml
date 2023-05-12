@@ -1,9 +1,17 @@
-getTeste:
-  handler: handler.getTeste
+getPulsesSubscribed:
+  handler: handler.getPulsesSubscribed
   events:
     - http:
-        path: teste
+        path: pulses/subscribed
         method: get
         cors:
           origin: "*"
-    # - schedule: rate(1 minute) 
+    - schedule: rate(4 minutes) 
+getPulsesGeneric:
+  handler: handler.getPulsesGeneric
+  events:
+    - http:
+        path: pulses/generic
+        method: get
+        cors:
+          origin: "*"
