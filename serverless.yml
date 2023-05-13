@@ -11,6 +11,7 @@ provider:
   environment: ${file(ymls/environment.yml)}
 
 functions: ${file(ymls/functions.yml)}
+custom: ${file(ymls/custom.yml)}
   
 resources:
   Resources:
@@ -31,19 +32,25 @@ resources:
       Type: AWS::S3::Bucket
       Properties:
         BucketName: ${self:service}-${self:provider.stage}-pulses-subscribed
-    PulsesGenericTable:
-      Type: "AWS::DynamoDB::Table"
+    # PulsesGenericTable:
+    #   Type: "AWS::DynamoDB::Table"
+    #   Properties:
+    #     TableName: ${self:service}-${self:provider.stage}-pulses-generic
+    #     BillingMode: PAY_PER_REQUEST
+    #     AttributeDefinitions:
+    #       - AttributeName: "id"
+    #         AttributeType: "S"
+    #     KeySchema:
+    #       - AttributeName: "id"
+    #         KeyType: "HASH"
+    #     SSESpecification:
+    #       SSEEnabled: true
+    PulsesGenericBucket:
+      Type: AWS::S3::Bucket
       Properties:
-        TableName: ${self:service}-${self:provider.stage}-pulses-generic
-        BillingMode: PAY_PER_REQUEST
-        AttributeDefinitions:
-          - AttributeName: "id"
-            AttributeType: "S"
-        KeySchema:
-          - AttributeName: "id"
-            KeyType: "HASH"
-        SSESpecification:
-          SSEEnabled: true
+        BucketName: ${self:service}-${self:provider.stage}-pulses-generic
 
 plugins:
+  - serverless-dynamodb-local
   - serverless-offline
+  - serverless-s3-local

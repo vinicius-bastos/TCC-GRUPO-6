@@ -1,12 +1,9 @@
 const getPulsesSubscribed = require('./getPulsesSubscribed');
 const getPulsesGeneric = require('./getPulsesGeneric');
 
-const getPulsesSubscribedService = {
+const getPulsesService = {
+  getPulsesGenericService: getPulsesGeneric().get,
   getPulsesSubscribedService: getPulsesSubscribed().get,
 };
 
-const getPulsesGenericService = {
-  getPulsesGenericService: getPulsesGeneric().get,
-};
-
-module.exports = { getPulsesSubscribedService, getPulsesGenericService };
+module.exports = getPulsesService;

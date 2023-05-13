@@ -6,7 +6,7 @@ getPulsesSubscribed:
         method: get
         cors:
           origin: "*"
-    - schedule: rate(4 minutes) 
+    - schedule: rate(2 minutes) 
 getPulsesGeneric:
   handler: handler.getPulsesGeneric
   events:

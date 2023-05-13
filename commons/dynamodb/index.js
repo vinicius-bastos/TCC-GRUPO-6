@@ -43,6 +43,39 @@ const insert = async ({ table, item }) => {
   }
 };
 
+const insertBatch = async ({ table, items }) => {
+  try {
+    const dynamoClient = getClient();
+
+    const batches = [];
+
+    for (let i = 0; i < items.length; i += 25) {
+      batches.push(
+        items.slice(i, i + 25).map((item) => ({
+          PutRequest: {
+            Item: item,
+          },
+        }))
+      );
+    }
+
+    const promises = batches.map((batch) => {
+      const params = {
+        RequestItems: {
+          [table]: batch,
+        },
+      };
+      return dynamoClient.batchWrite(params).promise();
+    });
+
+    const results = await Promise.all(promises);
+
+    return results;
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
 /**
  * @async
  * @param {String} table
@@ -77,4 +110,5 @@ const update = async ({ table, query, fields, values }) => {
 module.exports = {
   insert,
   update,
+  insertBatch,
 };

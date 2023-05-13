@@ -1,28 +1,26 @@
 const { v4: uuidv4 } = require('uuid');
-const { insert } = require('../../commons/dynamodb');
 const api = require('../../config/api');
+const S3 = require('../../commons/s3');
 
-const table = process.env.PULSES_GENERIC_TABLE_NAME;
+const bucketName = process.env.PULSES_GENERIC_S3_BUCKET;
 
 const getPulsesGenericService = () => {
   const get = async ({ content }) => {
     try {
-      const response = await api.get(`${content.endpoint}`);
-      console.log({ endpoint: content.endpoint });
-      console.log({ responseAlien: response.data });
-
+      console.log({ content });
+      console.log({ bucketName });
+      const response = await api.get(`${content}`);
       const item = response.data;
       item.id = uuidv4();
-      const params = {
-        TableName: table,
-        Item: item,
-      };
-      console.log({ params });
+      const directoryName = content.replace(/[^a-zA-Z0-9]/g, '_');
 
-      await insert({
-        table,
-        item,
-      });
+      console.log({ itemId: item.id });
+      const fileName = `${item.id}.json`;
+      const filePath = `${directoryName}/${fileName}`;
+      const contentType = 'application/json';
+
+      await S3.upload(bucketName, JSON.stringify(item), filePath, contentType);
+
       return 'Item inserido com sucesso';
     } catch (error) {
       console.log(error);

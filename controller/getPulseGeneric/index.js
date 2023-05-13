@@ -2,28 +2,23 @@ const getPulsesGenericServices = require('../../services');
 
 const getPulsesGeneric = async (event) => {
   try {
-    let { body } = event;
-    body = JSON.parse(body);
-    if (!body) {
-      return {
-        statusCode: 400,
-        body: JSON.stringify({
-          message: 'Missing body',
-        }),
-      };
-    }
+    const queryParams = event.queryStringParameters;
+    const endpoint = queryParams?.endpoint;
 
-    if (!body.endpoint) {
+    console.log({ queryParams });
+    console.log({ endpoint });
+
+    if (!endpoint) {
       return {
         statusCode: 400,
         body: JSON.stringify({
-          message: 'Missing required fields',
+          message: 'Missing required query parameters',
         }),
       };
     }
 
     const response = await getPulsesGenericServices.getPulsesGenericService({
-      content: body,
+      content: endpoint,
     });
 
     return {
