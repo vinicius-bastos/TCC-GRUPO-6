@@ -4,7 +4,7 @@ const { v4: uuidv4 } = require('uuid');
 const { insert } = require('../../commons/dynamodb');
 const api = require('../../config/api');
 
-const table = process.env.PULSES_SUBSCRIBED_TABLE_NAME;
+const table = process.env.PULSES_SUBSCRIBED_TABLE_NAME_V2;
 
 // Configurações do AWS S3
 const s3 = new AWS.S3();

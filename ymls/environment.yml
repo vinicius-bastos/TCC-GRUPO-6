@@ -1,4 +1,5 @@
 PULSES_SUBSCRIBED_TABLE_NAME: ${self:service}-${self:provider.stage}-pulses-subscribed
+PULSES_SUBSCRIBED_TABLE_NAME_V2: ${self:service}-${self:provider.stage}-pulses-subscribed-v2
 PULSES_SUBSCRIBED_S3_BUCKET: ${self:service}-${self:provider.stage}-pulses-subscribed
 # PULSES_GENERIC_TABLE_NAME: ${self:service}-${self:provider.stage}-pulses-generic
 PULSES_GENERIC_S3_BUCKET: ${self:service}-${self:provider.stage}-pulses-generic
