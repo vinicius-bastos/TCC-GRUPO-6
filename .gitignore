@@ -5,5 +5,10 @@ jspm_packages
 # Serverless directories
 .serverless
 
+.dynamodb
+
 # vscode
 .vscode
+
+# # analise
+# analise

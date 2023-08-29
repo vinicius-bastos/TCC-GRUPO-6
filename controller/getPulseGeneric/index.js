@@ -1,8 +1,25 @@
-const getTesteService = require('../../services');
+const getPulsesGenericServices = require('../../services');
 
-const getTeste = async () => {
+const getPulsesGeneric = async (event) => {
   try {
-    const response = await getTesteService.getTesteService();
+    const queryParams = event.queryStringParameters;
+    const endpoint = queryParams?.endpoint;
+
+    console.log({ queryParams });
+    console.log({ endpoint });
+
+    if (!endpoint) {
+      return {
+        statusCode: 400,
+        body: JSON.stringify({
+          message: 'Missing required query parameters',
+        }),
+      };
+    }
+
+    const response = await getPulsesGenericServices.getPulsesGenericService({
+      content: endpoint,
+    });
 
     return {
       statusCode: 200,
@@ -34,4 +51,4 @@ const getTeste = async () => {
   }
 };
 
-module.exports = { getTeste };
+module.exports = { getPulsesGeneric };

@@ -1,7 +1,12 @@
 const controller = require('./controller');
 
-const getTeste = async (event, context) => controller.getTeste(event, context);
+const getPulsesSubscribed = async (event, context) =>
+  controller.getPulsesSubscribed(event, context);
+
+const getPulsesGeneric = async (event, context) =>
+  controller.getPulsesGeneric(event, context);
 
 module.exports = {
-  getTeste,
+  getPulsesSubscribed,
+  getPulsesGeneric,
 };
