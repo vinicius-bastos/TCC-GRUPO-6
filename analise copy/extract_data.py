@@ -13,10 +13,10 @@ def get_all_items(table, filter_expression=None):
     try:
         items = []
         last_evaluated_key = None
-        cont = 0
+        # cont = 0
 
         while True:
-            cont = cont + 1
+            # cont = cont + 1
             scan_filter_option = {}
 
             if last_evaluated_key:
@@ -32,8 +32,8 @@ def get_all_items(table, filter_expression=None):
 
             items.extend(result['Items'])
 
-            if cont == 1:
-              break
+            # if cont == 1:
+            #   break
 
             if 'LastEvaluatedKey' in result:
                 last_evaluated_key = result['LastEvaluatedKey']
