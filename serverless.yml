@@ -7,7 +7,7 @@ provider:
   stage: ${opt:stage, env:STAGE, 'dev'}
   timeout: 60
   iam:
-    role: arn:aws:iam::979076447048:role/LabRole
+    role:  arn:aws:iam::456881819991:role/LabRole
   environment: ${file(ymls/environment.yml)}
 
 functions: ${file(ymls/functions.yml)}
