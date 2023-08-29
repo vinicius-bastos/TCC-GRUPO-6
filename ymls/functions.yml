@@ -15,3 +15,4 @@ getPulsesGeneric:
         method: get
         cors:
           origin: "*"
+          
