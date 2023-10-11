@@ -1,14 +1,16 @@
 const AWS = require('aws-sdk');
 const { v4: uuidv4 } = require('uuid');
 
-const dynamoDB = process.env.IS_OFFLINE
-  ? new AWS.DynamoDB.DocumentClient({
-      region: 'localhost',
-      endpoint: `http://localhost:4200`,
-      accessKeyId: 'DEFAULTACCESSKEY',
-      secretAccessKey: 'DEFAULTSECRET',
-    })
-  : new AWS.DynamoDB.DocumentClient();
+// const dynamoDB = process.env.IS_OFFLINE
+//   ? new AWS.DynamoDB.DocumentClient({
+//       region: 'localhost',
+//       endpoint: `http://localhost:4200`,
+//       accessKeyId: 'DEFAULTACCESSKEY',
+//       secretAccessKey: 'DEFAULTSECRET',
+//     })
+//   : new AWS.DynamoDB.DocumentClient();
+  
+ const dynamoDB = new AWS.DynamoDB.DocumentClient();
 
 const getClient = () => dynamoDB;
 

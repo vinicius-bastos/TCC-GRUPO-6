@@ -1,13 +1,17 @@
 import boto3
+# from dynamodb_json import json_util as json
 
 def scan(params):
     try:
         dynamodb_client = boto3.client('dynamodb')
         result = dynamodb_client.scan(**params)
-        # print(result)
+        # result_treated = json.loads(result)
+        # result = result['Items']
+        # result = json.loads(result)
         return result
     except Exception as e:
         raise e
+
 
 def get_all_items(table, filter_expression=None):
     try:
@@ -45,12 +49,12 @@ def get_all_items(table, filter_expression=None):
         raise e
 
 # # Nome da sua tabela
-# table_name = 'call-alien-vault-tcc-dev-pulses-subscribed'
+# table_name = 'call-alien-vault-tcc-dev-pulses-subscribed-v2'
 # filter_expression = 'public = :value'  # Exemplo de filtro em formato de expressão
 # expression_attribute_values = {':value': {'N': '1'}}
 
 # try:
 #     items = get_all_items(table_name)
-#     # print(items)
+#     print(items)
 # except Exception as e:
 #     print("Erro:", e)
