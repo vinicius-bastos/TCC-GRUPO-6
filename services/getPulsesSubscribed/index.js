@@ -70,6 +70,7 @@ const getPulsesSubscribedService = () => {
         table,
         item,
       });
+      console.log('oi');
       return 'Item inserido com sucesso';
     } catch (error) {
       console.log(error);

@@ -1,11 +1,11 @@
-dynamodb:
-  start:
-    port: 4200
-    inMemory: true
-    migrate: true
-  stages:
-    - dev
-    - local
+# dynamodb:
+#   start:
+#     port: 4200
+#     inMemory: true
+#     migrate: true
+#   stages:
+#     - dev
+#     - local
 
 s3:
   host: localhost

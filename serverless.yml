@@ -62,8 +62,12 @@ resources:
       Type: AWS::S3::Bucket
       Properties:
         BucketName: ${self:service}-${self:provider.stage}-pulses-generic
+    MainPulsesBucket:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: ${self:service}-${self:provider.stage}-main-pulses
 
 plugins:
-  - serverless-dynamodb-local
+  # - serverless-dynamodb-local
   - serverless-offline
   - serverless-s3-local
