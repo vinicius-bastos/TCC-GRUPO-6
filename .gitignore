@@ -1,0 +1,18 @@
+# package directories
+node_modules
+jspm_packages
+
+# Serverless directories
+.serverless
+
+.dynamodb
+
+# vscode
+.vscode
+
+# # analise
+# analise
+
+
+analise/data/union_all_jsons.json
+analise/data/union_all_jsons-v2.json

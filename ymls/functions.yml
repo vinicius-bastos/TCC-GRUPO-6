@@ -1,0 +1,18 @@
+getPulsesSubscribed:
+  handler: handler.getPulsesSubscribed
+  events:
+    - http:
+        path: pulses/subscribed
+        method: get
+        cors:
+          origin: "*"
+    - schedule: rate(2 minutes) 
+getPulsesGeneric:
+  handler: handler.getPulsesGeneric
+  events:
+    - http:
+        path: pulses/generic
+        method: get
+        cors:
+          origin: "*"
+          
